@@ -1,0 +1,20 @@
+{
+    "live": [
+        {
+            "id": 1,
+            "liveName": "NLW#4 – Aquecendo os Motores",
+            "channelName": "Rocketseat",
+            "liveDate": "2021-02-21",
+            "liveLink": "https://www.youtube.com/watch?v=5CZmkjFHe4U",
+            "registrationDate": "2021-03-07"
+        },
+        {
+            "id": 2,
+            "liveName": "[NLW#4] Encerramento da Quarta Edição",
+            "channelName": "Rocketseat",
+            "liveDate": "2021-03-01",
+            "liveLink": "https://www.youtube.com/watch?v=p0OhKagYdK8",
+            "registrationDate": "2021-03-07"
+        }
+    ]
+}
