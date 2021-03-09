@@ -1,5 +1,5 @@
 export class ResponsePageable {
-    content: any[] | undefined;
+    content!: any[];
     first: boolean | undefined;
     last: boolean | undefined;
     number: number | undefined;
