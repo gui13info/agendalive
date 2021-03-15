@@ -1,6 +1,8 @@
-import { LiveService } from './../../../shared/service/live.service';
 import { Component, OnInit } from '@angular/core';
-import { live } from './../../../shared/model/live.model';
+import { LiveService } from 'src/app/shared/service/live.service';
+import { Live } from 'src/app/shared/model/live.model';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-live-list',
@@ -9,24 +11,38 @@ import { live } from './../../../shared/model/live.model';
 })
 export class LiveListComponent implements OnInit {
 
-  livesPrevious: live[] =[];
-  livesNext: live[] =[];
+  livesNext: Live[];
+  livesPrevious: Live[];
+  livesNextReady: boolean = false;
+  livesPreviousReady: boolean = false;
+  url: string = '';
+  urlSafe: SafeResourceUrl;
+
 
   constructor(
-    public liveService: LiveService
+    private rest: LiveService,
+    public sanitizer: DomSanitizer
   ) { }
 
-  ngOnInit(): void {
-    this.getLives();
+  ngOnInit() {
+   this.getLives();
   }
 
   getLives(){
-    this.liveService.getLivesWithFlag('previous').subscribe(dados => {
-      this.livesPrevious = dados.content;
+    this.rest.getLivesWithFlag('next').subscribe(data => {
+      this.livesNext = data.content;
+      this.livesNext.forEach(live => {
+        live.urlSafe = this.sanitizer.bypassSecurityTrustResourceUrl(live.liveLink);
+      });
+      this.livesNextReady = true;
     });
 
-    this.liveService.getLivesWithFlag('next').subscribe(dados => {
-      this.livesNext = dados.content;
+    this.rest.getLivesWithFlag('previous').subscribe(data => {
+      this.livesPrevious = data.content;
+      this.livesPrevious.forEach(live => {
+        live.urlSafe = this.sanitizer.bypassSecurityTrustResourceUrl(live.liveLink);
+      });
+      this.livesPreviousReady = true;
     });
   }
 

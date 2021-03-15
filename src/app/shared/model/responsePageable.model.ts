@@ -1,12 +1,12 @@
 export class ResponsePageable {
-    content!: any[];
-    first: boolean | undefined;
-    last: boolean | undefined;
-    number: number | undefined;
-    numberOfElements: number | undefined;
-    pageable: any[] | undefined;
-    size: number | undefined;
-    sort: number | undefined;
-    totalElements: number | undefined;
-    totalPages: number | undefined;
+    content: any[];
+    first: boolean;
+    last: boolean;
+    number: number;
+    numberOfElements: number;
+    pageable: any[];
+    size: number;
+    sort: number;
+    totalElements: number;
+    totalPages: number;
 }
